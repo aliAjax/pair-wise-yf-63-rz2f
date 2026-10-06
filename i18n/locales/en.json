@@ -1,8 +1,10 @@
 {
   "title": "Multinational Trial Randomization Desk",
-  "subtitle": "Stratified randomization, role isolation, safe unblinding and pending queue",
+  "subtitle": "Stratified randomization, role isolation, safe unblinding, backup paper cards and flight-inspection reconciliation",
   "randomize": "Randomize",
   "participants": "Participants",
   "audit": "Safety audit",
-  "pending": "Pending queue"
+  "paperCards": "Backup paper cards",
+  "plan": "Allocation plan",
+  "reconcile": "Flight-inspection reconciliation"
 }
