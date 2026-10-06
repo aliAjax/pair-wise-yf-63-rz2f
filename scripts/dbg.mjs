@@ -1,0 +1,18 @@
+import { createJiti } from '/workspace/node_modules/jiti';
+const jiti = createJiti(import.meta.url, { alias: { '~': '/workspace/' } });
+const { createPinia, setActivePinia } = await jiti.import('pinia');
+const { useTrialStore } = await jiti.import('/workspace/stores/trial');
+const mem = {};
+globalThis.localStorage = { getItem: k => mem[k] ?? null, setItem: (k,v)=>mem[k]=v, removeItem: k=>delete mem[k], clear(){for(const k in mem) delete mem[k]} };
+setActivePinia(createPinia());
+const t = useTrialStore();
+console.log('initial ledger', t.ledger.length);
+t.printCards({ site: '广州中心', ageBand: '65+' }, 3, '王敏');
+const b = t.openBatch('王敏');
+const cards = t.cards.filter(c => c.stratumKey === '广州中心|65+');
+console.log('cards', cards.map(c => `${c.cardNo}:pos${c.position}:${c.arm}:${c.randomNo}`));
+t.issuePaper(b.id, { participantNo: 'P-1', identityKey: 'p1', site: '广州中心', ageBand: '65+', actor: '王敏' }, cards[0].cardNo);
+t.issuePaper(b.id, { participantNo: 'P-2', identityKey: 'p2', site: '广州中心', ageBand: '65+', actor: '王敏' }, cards[1].cardNo);
+const before = t.ledger.length;
+const m = t.mergeBatch(b.id, '王敏');
+console.log('merge', m, 'before', before, 'after', t.ledger.length, 'delta', t.ledger.length - before);

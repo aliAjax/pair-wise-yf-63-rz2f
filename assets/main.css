@@ -7,5 +7,6 @@ body { margin: 0; background: radial-gradient(circle at 15% 0%, #dff5f1, transpa
 .hero p { margin: 0; color: #607889; }
 .stat { background: #fff; border: 1px solid #d9e8e8; border-radius: 15px; padding: 16px; box-shadow: 0 8px 24px rgba(30, 80, 90, .06); }
 .stat b { display: block; font-size: 28px; }
+.stat-row { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; margin-bottom: 20px; }
 .grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 20px; }
 @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .hero { align-items: flex-start; flex-direction: column; } }
